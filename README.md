@@ -33,7 +33,7 @@ YouBot机器人的第一个简单控制代码，可以作为入门级学习代�
 
 1. 关注公众号：博士的沙漏。
 
-![image](https://github.com/chauby/V-REP-YouBot-Demo/blob/master/qrcode.jpg)
+![image](https://github.com/chauby/V-REP-YouBot-Demo/blob/master/qrcode.jpg){:height=“50%” width=“50%”}
 
 
 
