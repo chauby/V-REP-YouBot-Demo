@@ -24,7 +24,7 @@ for t=time_step:time_step:t3
         tmp_theta_2 = 0;
     elseif t <= t2
         tmp_theta_1 = theta_1(end);
-        tmp_theta_2 = theta_2(end) + 2*pi - 2*pi*time_step/(t2-t1);
+        tmp_theta_2 = theta_2(end) - 2*pi*time_step/(t2-t1);
     else
         tmp_theta_1 = theta_1(end) + pi*time_step/(t3-t2);
         tmp_theta_2 = theta_2(end);
@@ -67,12 +67,14 @@ end
 
 
 %% plot
-% figure()
-% subplot(2,1,1)
-% plot(theta_1)
-% 
-% subplot(2,1,2)
-% plot(theta_2)
+figure()
+subplot(2,1,1)
+plot(theta_1)
+title('theta 1')
+
+subplot(2,1,2)
+plot(theta_2)
+title('theta 2')
 
 figure()
 subplot(3,1,1)
