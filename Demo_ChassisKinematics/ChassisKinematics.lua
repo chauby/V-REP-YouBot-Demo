@@ -34,11 +34,22 @@ function sysCall_init()
     omega_2 = 0
     omega_3 = 0
     omega_4 = 0
+
     wheel_R = 0.05 -- 0.05 m
-    a = 0.25 -- 0.25 m
-    b = 0.228 -- 0.228 m
+    a = 0.228 -- 0.228 m
+    b = 0.25 -- 0.25 m
     
-    initialization()
+    current_pos = {0, 0, 0}
+    target_pos = {0, 0, 0}
+    theta = 0
+    delta_theta = 0.01
+    circle_R = 1
+    circle_pos = {circle_R, 0}
+    
+    youbot_init_position = {0, 0, 9.5341e-02}
+    sim.setObjectPosition(you_bot, -1, youbot_init_position)
+
+    InitializeTwoCirclesPathPlanning()
 end
 
 
@@ -47,17 +58,8 @@ function sysCall_cleanup()
 end
 
 
+-- Inverse kinematics
 function chassisInverseKinematics(vx, vy, omega, wheel_R, a, b)
-    -- omega_1 = (vx - vy - (a+b)*omega)/wheel_R
-    -- omega_2 = (vx + vy + (a+b)*omega)/wheel_R
-    -- omega_3 = (vx - vy + (a+b)*omega)/wheel_R
-    -- omega_4 = (vx + vy - (a+b)*omega)/wheel_R
-    
-    -- omega_1 = (vx + vy + (a+b)*omega)/wheel_R
-    -- omega_2 = (vx - vy - (a+b)*omega)/wheel_R
-    -- omega_3 = (vx + vy - (a+b)*omega)/wheel_R
-    -- omega_4 = (vx - vy + (a+b)*omega)/wheel_R
-    
     omega_1 = (vy - vx + (a+b)*omega)/wheel_R
     omega_2 = (vy + vx - (a+b)*omega)/wheel_R
     omega_3 = (vy - vx - (a+b)*omega)/wheel_R
@@ -70,6 +72,7 @@ function chassisInverseKinematics(vx, vy, omega, wheel_R, a, b)
     v_wheel_4 = -omega_4
 end
 
+-- Single circle path
 function circlePathPlanning()
     theta = theta + delta_theta
     target_pos[1] = circle_pos[1] - circle_R*math.cos(theta)
@@ -77,16 +80,46 @@ function circlePathPlanning()
     target_pos[3] = 0
 end
 
-function initialization()
-    current_pos = {0, 0, 0}
-    target_pos = {0, 0, 0}
-    theta = 0
-    delta_theta = 0.01
-    circle_R = 1
-    circle_pos = {circle_R, 0}
+-- Two circles path
+function InitializeTwoCirclesPathPlanning()
+    t = 0
+    t1 = 1
+    t2 = 3
+    t3 = 4
+    time_step = 0.002
+
+    circle_R1 = 1
+    circle_R2 = 1
+
+    theta_1 = 0
+    theta_2 = 0
+    pos_x = 0
+    pos_y = 0
+end
+
+function twoCirclesPathPlanning()
+    if t <= t1 then
+        theta_1 = theta_1 + math.pi*time_step/t1
+    elseif t <= t2 then
+        theta_2 = theta_2 + 2*math.pi - 2*math.pi*time_step/(t2-t1)
+    else
+        theta_1 = theta_1 + math.pi*time_step/(t3-t2)
+    end
     
-    youbot_init_position = {0, 0, 9.5341e-02}
-    sim.setObjectPosition(you_bot, -1, youbot_init_position)
+    pos_x = circle_R1 - circle_R1*math.cos(theta_1) + circle_R2 - circle_R2*math.cos(theta_2)
+    pos_y = circle_R1*math.sin(theta_1) + circle_R2*math.sin(theta_2)
+    
+    target_pos[1] = pos_x
+    target_pos[2] = pos_y
+    target_pos[3] = 0
+end
+
+
+function circlePathPlanning()
+    theta = theta + delta_theta
+    target_pos[1] = circle_pos[1] - circle_R*math.cos(theta)
+    target_pos[2] = circle_pos[2] + circle_R*math.sin(theta)
+    target_pos[3] = 0
 end
 
 -- Control joints of YouBot
@@ -100,28 +133,36 @@ function sysCall_actuation()
     -- vx = 0.1
     -- vy = 0
     -- omega = 0
-    -- chassisKinematics(vx, vy, omega, wheel_R, a, b)
+    -- chassisInverseKinematics(vx, vy, omega, wheel_R, a, b)
 
     -- Plan the path for YouBot
     current_pos = sim.getObjectPosition(you_bot,-1)
+    current_orientation = sim.getObjectOrientation(you_bot, -1, opMode)
+    -- print('current_ori=', current_orientation)
+    current_pos[3] = current_orientation[3]
     
-    current_orientation = sim.getObjectOrientation(you_bot,-1)
-    --print('current_ori=', current_orientation)
+    -- target_pos = {0, 0, 0.1}
+    -- circlePathPlanning() -- update target position
+    -- print('target_pos=', target_pos)
+    -- print('current_pos=', current_pos) -- error
+
+    if t == 0 then
+        print('initialize path')
+        InitializeTwoCirclesPathPlanning()
+        t = t + time_step
+    elseif t > t3 then
+        print('end')
+        t = 0
+    else
+        print('following path')
+        twoCirclesPathPlanning()
+        t = t + time_step
+    end
     
-    current_pos[3] = current_orientation[3] + math.pi/2
-    
-    circlePathPlanning() -- update target position
-    -- target_pos = {1, 0, 0}
-    print('target_pos=', target_pos)
-    print('current_pos=', current_pos) -- error
-    
+    -- Simple PID control
     KP_pos = 0.5
-    KP_omega = 0.2
-    
+    KP_omega = 0
     center_velocity = {KP_pos*(target_pos[1]  - current_pos[1]), KP_pos*(target_pos[2] - current_pos[2]), KP_omega*(target_pos[3] - current_pos[3])}
-    --print('center_vel=', center_velocity)
-    
-    -- Compute velocity for each wheel
     chassisInverseKinematics(center_velocity[1], center_velocity[2], center_velocity[3], wheel_R, a, b)
     
     
