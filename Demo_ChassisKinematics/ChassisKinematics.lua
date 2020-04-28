@@ -3,6 +3,7 @@ function sysCall_init()
     -- Get YouBot Handle
     you_bot = sim.getObjectHandle('youBot')
     you_bot_dummy = sim.getObjectHandle('youBotDummy')
+    dummy_guider_handle = sim.getObjectHandle('DummyGuider')
     
     -- Prepare initial values for four wheels
     wheel_joints = {-1,-1,-1,-1} -- front left, rear left, rear right, front right
@@ -42,6 +43,8 @@ function sysCall_init()
     
     current_pos = {0, 0, 0}
     target_pos = {0, 0, 0}
+    dummy_guider_position = {0, 0, 0}
+    dummy_guider_orientation = {0, 0, 0}
     theta = 0
     delta_theta = 0.002
     circle_R = 1
@@ -60,6 +63,14 @@ end
 
 function sysCall_cleanup()
  
+end
+
+function sysCall_sensing()
+    -- put your sensing code here
+    dummy_guider_position = sim.getObjectPosition(dummy_guider_handle, -1)
+    -- print('pos:', dummy_guider_position)
+    dummy_guider_orientation = sim.getObjectOrientation(dummy_guider_handle, -1)
+    -- print('ori:', dummy_guider_orientation)
 end
 
 
@@ -137,11 +148,11 @@ function sysCall_actuation()
     -- chassisInverseKinematics(vx, vy, omega, wheel_R, a, b)
 
     -- Plan the path for YouBot
-    if simu_time < 10 then
-        target_pos = {0, 0, -1.57}
-    else
-        target_pos = {1, 0, -1.57}
-    end
+    -- if simu_time < 10 then
+    --     target_pos = {0, 0, -1.57}
+    -- else
+    --     target_pos = {1, 0, -1.57}
+    -- end
 
     -- circlePathPlanning() -- update target position
     -- print('target_pos=', target_pos)
@@ -159,6 +170,9 @@ function sysCall_actuation()
     --     twoCirclesPathPlanning()
     --     t = t + time_step
     -- end
+
+    target_pos = dummy_guider_position
+    target_pos[3] = -dummy_guider_orientation[2]
 
     current_pos = sim.getObjectPosition(you_bot_dummy,-1)
     current_orientation = sim.getObjectOrientation(you_bot_dummy, -1)
