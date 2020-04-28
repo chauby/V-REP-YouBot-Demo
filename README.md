@@ -31,11 +31,11 @@ YouBot机器人的第一个简单控制代码，可以作为入门级学习代�
 
 本教程将同步发布在知乎和微信公众号上，想要获取文章教程有以下两种方式：
 
-1. 关注公众号：博士的沙漏。
+1. 访问知乎专栏【AI与机器人】：https://zhuanlan.zhihu.com/c_1212783320150577152
+
+2. 关注微信公众号：博士的沙漏。
 
 ![image](https://github.com/chauby/V-REP-YouBot-Demo/blob/master/qrcode.jpg)
 
 
-
-2. 访问知乎专栏【AI与机器人】：https://zhuanlan.zhihu.com/c_1212783320150577152
 
