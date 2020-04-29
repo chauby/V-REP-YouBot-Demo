@@ -70,7 +70,7 @@ function sysCall_sensing()
     dummy_guider_position = sim.getObjectPosition(dummy_guider_handle, -1)
     -- print('pos:', dummy_guider_position)
     dummy_guider_orientation = sim.getObjectOrientation(dummy_guider_handle, -1)
-    -- print('ori:', dummy_guider_orientation)
+    print('ori:', dummy_guider_orientation)
 end
 
 
@@ -201,8 +201,8 @@ function sysCall_actuation()
 
     
     -- Apply the desired wheel velocities
-    sim.setJointTargetVelocity(wheel_joints[1], v_wheel_1)
-    sim.setJointTargetVelocity(wheel_joints[2], v_wheel_2)
-    sim.setJointTargetVelocity(wheel_joints[3], v_wheel_3)
-    sim.setJointTargetVelocity(wheel_joints[4], v_wheel_4)
+    -- sim.setJointTargetVelocity(wheel_joints[1], v_wheel_1)
+    -- sim.setJointTargetVelocity(wheel_joints[2], v_wheel_2)
+    -- sim.setJointTargetVelocity(wheel_joints[3], v_wheel_3)
+    -- sim.setJointTargetVelocity(wheel_joints[4], v_wheel_4)
 end
