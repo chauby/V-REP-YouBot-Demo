@@ -21,9 +21,9 @@ YouBot机器人的第一个简单控制代码，可以作为入门级学习代�
 
 ## 3. Demo_ChassisKinematics
 
-构建底盘的运动学模型，规划底盘在地面上的运动路径。
+构建底盘的运动学模型，规划底盘在地面上的运动路径Path。
 
-
+![image](https://github.com/chauby/V-REP-YouBot-Demo/blob/master/3_Demo_ChassisKinematics/YouBotPathDemo.png)
 
 
 

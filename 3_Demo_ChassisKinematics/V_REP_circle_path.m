@@ -1,14 +1,14 @@
 clear
 close all
 
-t1 = 1;
-t2 = 3;
-t3 = 4;
+t1 = 5;
+t2 = 15;
+t3 = 20;
 
 R1 = 1;
 R2 = 1;
 
-time_step = 0.05;
+time_step = 0.01;
 
 theta_1 = 0;
 theta_2 = 0;
@@ -103,3 +103,8 @@ title('omega')
 xlabel('time')
 ylabel('vel')
 legend('omega')
+
+v = [vx,vy,omega];
+
+%%
+csvwrite('center_velocity.csv',v);
