@@ -25,6 +25,12 @@ YouBot机器人的第一个简单控制代码，可以作为入门级学习代�
 
 ![image](https://github.com/chauby/V-REP-YouBot-Demo/blob/master/3_Demo_ChassisKinematics/YouBotPathDemo.png)
 
+## 4. Demo_DummyPath
+
+构建了Dummy和Path，并让Dummy跟随Path运动。
+
+![image](https://github.com/chauby/V-REP-YouBot-Demo/blob/master/4_Demo_DummyPath/DummyPathDemo.gif)
+
 
 
 ## 文章教程
