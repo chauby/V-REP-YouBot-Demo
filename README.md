@@ -35,6 +35,16 @@ YouBot机器人的第一个简单控制代码，可以作为入门级学习代�
 
 
 
+## 5. Demo_ArmInverseKinematicsIK
+
+基于V-REP的逆运动学模块构建YouBot机器人机械臂的逆运动学模型，并使用dummy和path来控制机械臂按照预定轨迹运动。
+
+![image](https://github.com/chauby/V-REP-YouBot-Demo/blob/master/5_Demo_ArmInverseKinematicsIK/ArmIKDemo.gif)
+
+
+
+
+
 ## 文章教程
 
 本教程将同步发布在个人微信公众号和知乎专栏上，想要获取文章教程有以下2种方式：
