@@ -43,6 +43,14 @@ YouBot机器人的第一个简单控制代码，可以作为入门级学习代�
 
 
 
+## 6. Demo_MatlabAndPythonControl
+
+使用Matlab和Python编写控制代码远程控制V-REP中的YouBot机器人模型，可基于此Demo开发其他算法。
+
+![image](https://github.com/chauby/V-REP-YouBot-Demo/blob/master/6_Demo_MatlabAndPythonControl/MatlabPythonVREP.gif)
+
+
+
 
 
 ## 文章教程
@@ -57,3 +65,4 @@ YouBot机器人的第一个简单控制代码，可以作为入门级学习代�
 更多联系方式（More contact information）：
 - Email: chaubyZou@163.com
 - QQ: 779490568
+
