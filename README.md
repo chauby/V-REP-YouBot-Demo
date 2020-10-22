@@ -50,7 +50,11 @@ YouBot机器人的第一个简单控制代码，可以作为入门级学习代�
 ![image](https://github.com/chauby/V-REP-YouBot-Demo/blob/master/6_Demo_MatlabAndPythonControl/MatlabPythonVREP.gif)
 
 
+## 7. Demo_MatlabAndPythonControl
 
+使用Python编写控制代码远程控制V-REP中的YouBot机器人模型完成从A点抓取物体并移动到B点的任务。
+
+![image](https://github.com/chauby/V-REP-YouBot-Demo/blob/master/7_Demo_youBotPickAndPlace/youBotPickAndPlace.gif)
 
 
 ## 文章教程
