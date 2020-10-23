@@ -56,13 +56,14 @@ YouBot机器人的第一个简单控制代码，可以作为入门级学习代�
 
 ![image](https://github.com/chauby/V-REP-YouBot-Demo/blob/master/7_Demo_youBotPickAndPlace/youBotPickAndPlace.gif)
 
+---
 
 ## 文章教程
 
-本教程将同步发布在个人微信公众号和知乎专栏上，想要获取文章教程有以下2种方式：
+本教程将同步发布在个人微信公众号、知乎专栏和CSDN上，想要获取文章教程有以下3种方式：
 1. 访问知乎专栏【AI与机器人】：https://zhuanlan.zhihu.com/c_1212783320150577152
-
-2. 关注微信公众号：博士的沙漏。
+2. 访问CSDN博客【博士的沙漏】：https://blog.csdn.net/shakehands2012
+3. 关注微信公众号：博士的沙漏。
 
 ![image](https://github.com/chauby/V-REP-YouBot-Demo/blob/master/qrcode.jpg)
 
