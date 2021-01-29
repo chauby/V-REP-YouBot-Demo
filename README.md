@@ -56,6 +56,16 @@ YouBot机器人的第一个简单控制代码，可以作为入门级学习代�
 
 ![image](https://github.com/chauby/V-REP-YouBot-Demo/blob/master/7_Demo_youBotPickAndPlace/youBotPickAndPlace.gif)
 
+
+
+## 8. Demo_PathTracking
+
+更新了youBot的路径跟随demo，现在可以自定义路径了。
+
+![image](https://github.com/chauby/V-REP-YouBot-Demo/blob/master/8_Demo_youBotTrackingPath/path_tracking.gif)
+
+
+
 ---
 
 ## 文章教程
