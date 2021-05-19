@@ -4,6 +4,8 @@
 ![image](https://github.com/chauby/V-REP-YouBot-Demo/blob/master/Kuka-YouBot.png)
 
 
+本项目是在CoppeliaSim 4.1版本的软件上测试的，由于最新的软件版本是CoppeliaSim 4.2，与4.1在某些控件和函数的使用上有较大变化，因此如果是要使用本项目的代码，建议大家还是安装4.1版本的软件。
+
 
 本项目包含多个YouBot机器人的控制Demo，现分别说明如下：
 
