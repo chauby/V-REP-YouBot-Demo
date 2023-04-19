@@ -75,11 +75,10 @@ YouBot机器人的第一个简单控制代码，可以作为入门级学习代�
 本教程将同步发布在个人微信公众号、知乎专栏和CSDN上，想要获取文章教程有以下3种方式：
 1. 访问知乎专栏【AI与机器人】：https://zhuanlan.zhihu.com/c_1212783320150577152
 2. 访问CSDN博客【沙漏】：https://blog.csdn.net/shakehands2012
-3. 关注微信公众号：沙漏AI机器人。
+3. 关注微信公众号：沙漏AI机器人。可获取AI与机器人技术交流群加入方式。
 
 ![image](https://github.com/chauby/V-REP-YouBot-Demo/blob/master/qrcode.png)
 
 更多联系方式（More contact information）：
 - Email: chaubyZou@163.com
-- QQ: 779490568
 
