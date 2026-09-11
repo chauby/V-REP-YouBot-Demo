@@ -1,0 +1,148 @@
+:root {
+  --orca-bg: #ffffff;
+  --orca-fg: #14202b;
+  --orca-muted: #5b6b7b;
+  --orca-border: #c8d3de;
+  --orca-panel: #ffffff;
+  --orca-accent: #0a6cff;
+  --orca-accent-fg: #ffffff;
+  --orca-danger: #b3261e;
+  --orca-ok: #12724a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --orca-bg: #10161d;
+    --orca-fg: #e8eef5;
+    --orca-muted: #9fb0c0;
+    --orca-border: #33414f;
+    --orca-panel: #17202a;
+    --orca-accent: #4d97ff;
+    --orca-accent-fg: #0b1016;
+    --orca-danger: #ff8b82;
+    --orca-ok: #5fd3a3;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 24px;
+  background: var(--orca-bg);
+  color: var(--orca-fg);
+  font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+.orca-panel { max-width: 880px; margin: 0 auto; }
+
+.orca-header { display: flex; gap: 12px; align-items: center; margin-bottom: 20px; }
+.orca-header h1 { font-size: 22px; margin: 0; }
+.orca-mark { border-radius: 6px; }
+.orca-subtitle { margin: 2px 0 0; color: var(--orca-muted); font-size: 13px; }
+
+.orca-section {
+  border: 1px solid var(--orca-border);
+  border-radius: 10px;
+  padding: 16px 18px 20px;
+  margin-bottom: 18px;
+  background: var(--orca-panel);
+}
+.orca-section h2 { font-size: 16px; margin: 0 0 6px; }
+.orca-hint { color: var(--orca-muted); font-size: 13px; margin: 0 0 12px; }
+
+.orca-auth-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 700px) { .orca-auth-grid { grid-template-columns: 1fr; } }
+
+.orca-auth-card {
+  border: 1px solid var(--orca-border);
+  border-radius: 8px;
+  padding: 14px;
+}
+.orca-auth-card h3 { margin: 0 0 10px; font-size: 14px; }
+
+.orca-label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+.orca-help { color: var(--orca-muted); font-size: 12px; margin: 6px 0 10px; }
+.orca-help a { color: var(--orca-accent); }
+
+.orca-input {
+  width: 100%;
+  padding: 8px 10px;
+  font: inherit;
+  color: var(--orca-fg);
+  background: var(--orca-bg);
+  border: 1px solid var(--orca-border);
+  border-radius: 6px;
+}
+.orca-select { max-width: 260px; }
+
+.orca-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 8px; }
+.orca-row .orca-input { width: auto; flex: 1 1 180px; }
+/* A class that sets `display` would otherwise defeat the `hidden` attribute. */
+.orca-row[hidden], .orca-hint[hidden] { display: none; }
+
+.orca-btn {
+  font: inherit;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--orca-border);
+  background: var(--orca-bg);
+  color: var(--orca-fg);
+  cursor: pointer;
+}
+.orca-btn:hover:not(:disabled) { border-color: var(--orca-accent); }
+.orca-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+.orca-btn:focus-visible { outline: 2px solid var(--orca-accent); outline-offset: 2px; }
+.orca-btn-primary { background: var(--orca-accent); color: var(--orca-accent-fg); border-color: var(--orca-accent); }
+
+.orca-status { font-size: 13px; margin: 10px 0 0; color: var(--orca-muted); }
+.orca-status.is-ok { color: var(--orca-ok); }
+.orca-status.is-error { color: var(--orca-danger); }
+
+/* --- model selector ------------------------------------------------- */
+/* The popup is anchored to the trigger's own box, so the two right edges
+   coincide exactly rather than by coincidence. */
+.orca-select-wrap { position: relative; width: 360px; max-width: 100%; }
+
+.orca-model-trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  cursor: pointer;
+  text-align: left;
+}
+.orca-model-trigger:disabled { opacity: 0.55; cursor: not-allowed; }
+.orca-caret { color: var(--orca-muted); }
+
+.orca-model-listbox {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  width: auto;
+  max-height: 280px;
+  overflow-y: auto;
+  background: var(--orca-panel);
+  border: 1px solid var(--orca-border);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  z-index: 40;
+  padding: 4px;
+}
+.orca-model-listbox[hidden] { display: none; }
+
+.orca-option {
+  padding: 7px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 13px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.orca-option:hover, .orca-option.is-active { background: color-mix(in srgb, var(--orca-accent) 16%, transparent); }
+.orca-option .orca-option-id { color: var(--orca-muted); font-size: 12px; }
+.orca-option[aria-selected="true"] { font-weight: 600; }
+.orca-empty { padding: 10px; color: var(--orca-muted); font-size: 13px; }

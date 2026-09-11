@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OrcaRouter provider settings</title>
+<link rel="icon" href="/static/orca-logo-classic.png">
+<link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+<main class="orca-panel" id="orca-panel">
+  <header class="orca-header">
+    <img class="orca-mark" src="/static/orca-logo-classic.png" alt="OrcaRouter" width="32" height="32">
+    <div>
+      <h1>OrcaRouter</h1>
+      <p class="orca-subtitle" id="orca-subtitle">
+        OpenAI-compatible AI gateway for models and agents &middot;
+        <a href="https://www.orcarouter.ai" rel="noreferrer noopener" target="_blank">www.orcarouter.ai</a>
+      </p>
+    </div>
+  </header>
+
+  <section class="orca-section" aria-labelledby="auth-heading">
+    <h2 id="auth-heading">Authentication</h2>
+    <p class="orca-hint">Two independent ways in. The API key works without a browser;
+      Connect with OrcaRouter issues a key for your own account.</p>
+
+    <div class="orca-auth-grid">
+      <!-- Entry 1: existing API key ------------------------------------- -->
+      <div class="orca-auth-card" id="auth-card-api">
+        <h3>OrcaRouter - API</h3>
+        <label class="orca-label" for="orca-api-key">API key</label>
+        <input id="orca-api-key" name="orca-api-key" type="password"
+               class="orca-input" autocomplete="off" spellcheck="false"
+               placeholder="sk-orca-…" aria-describedby="orca-api-key-help">
+        <p class="orca-help" id="orca-api-key-help">
+          Stored in the project credential file, never logged and never sent to the browser again.
+          <a href="https://www.orcarouter.ai/console/authorized-apps" target="_blank"
+             rel="noreferrer noopener">Manage keys</a>
+        </p>
+        <div class="orca-row">
+          <button type="button" class="orca-btn orca-btn-primary" id="orca-save-key">Save API key</button>
+          <button type="button" class="orca-btn" id="orca-clear-key">Clear</button>
+        </div>
+        <p class="orca-status" id="status-orcarouter" role="status">not configured</p>
+      </div>
+
+      <!-- Entry 2: OAuth 2.0 + PKCE ------------------------------------- -->
+      <div class="orca-auth-card" id="auth-card-pkce">
+        <h3>OrcaRouter - Auth</h3>
+        <p class="orca-help">
+          OAuth 2.0 + PKCE with S256. No client secret, no pre-registered redirect URI.
+        </p>
+        <div class="orca-row">
+          <button type="button" class="orca-btn orca-btn-primary" id="orca-connect">
+            Connect with OrcaRouter
+          </button>
+          <button type="button" class="orca-btn" id="orca-cancel-connect" disabled>Cancel</button>
+          <button type="button" class="orca-btn" id="orca-clear-oauth">Clear</button>
+        </div>
+        <p class="orca-status" id="status-orcarouter-oauth" role="status">not configured</p>
+        <p class="orca-hint" id="orca-connect-hint" hidden></p>
+        <div class="orca-row" id="orca-oob-row" hidden>
+          <label class="orca-label" for="orca-oob-code">Code shown in the browser</label>
+          <input id="orca-oob-code" class="orca-input" autocomplete="off" spellcheck="false">
+          <button type="button" class="orca-btn" id="orca-oob-submit">Finish</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="orca-section" aria-labelledby="model-heading">
+    <h2 id="model-heading">Model</h2>
+    <p class="orca-hint">Loaded live from <code id="orca-catalog-url">https://api.orcarouter.ai/v1/models</code>.
+      Filtered per surface, so only models this surface can speak are offered.</p>
+
+    <div class="orca-row">
+      <label class="orca-label" for="orca-surface">Surface</label>
+      <select id="orca-surface" class="orca-input orca-select">
+        <option value="chat|">Text chat</option>
+        <option value="chat|image">Image understanding</option>
+        <option value="embedding|">Embeddings</option>
+        <option value="image|">Image generation</option>
+        <option value="video|">Video generation</option>
+        <option value="rerank|">Rerank</option>
+      </select>
+      <button type="button" class="orca-btn" id="orca-refresh-models">Refresh catalog</button>
+    </div>
+
+    <label class="orca-label" id="orca-model-label" for="orca-model-trigger">Model</label>
+    <div class="orca-select-wrap">
+      <button type="button" class="orca-input orca-model-trigger" id="orca-model-trigger"
+              role="combobox" aria-haspopup="listbox" aria-expanded="false"
+              aria-controls="orca-model-listbox" aria-labelledby="orca-model-label">
+        <span id="orca-model-value">Select a model…</span>
+        <span class="orca-caret" aria-hidden="true">▾</span>
+      </button>
+      <div class="orca-model-listbox" id="orca-model-listbox" role="listbox"
+           aria-labelledby="orca-model-label" hidden></div>
+    </div>
+    <p class="orca-hint" id="orca-catalog-state" role="status"></p>
+    <input type="hidden" id="orca-model-id" name="orca-model-id">
+  </section>
+</main>
+<script src="/static/app.js"></script>
+</body>
+</html>
