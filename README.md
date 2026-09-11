@@ -70,6 +70,38 @@ YouBot机器人的第一个简单控制代码，可以作为入门级学习代�
 
 ---
 
+## OrcaRouter provider (AI gateway)
+
+This repository also ships [OrcaRouter](https://www.orcarouter.ai) as a
+first-class AI provider for the demos, with two independent authentication
+choices:
+
+| Choice | Provider id | Description |
+| --- | --- | --- |
+| OrcaRouter - API | `orcarouter` | Use an existing `sk-orca-…` API key. Works without a browser. |
+| OrcaRouter - Auth | `orcarouter-oauth` | Connect with your OrcaRouter account (OAuth 2.0 + PKCE); no client secret, no pre-registered redirect URI. |
+
+Both feed the same OpenAI-compatible inference client at
+`https://api.orcarouter.ai/v1` and the same live model catalog.
+
+```bash
+python -m orcarouter.cli status                    # show both authentication choices
+python -m orcarouter.cli connect                   # Connect with OrcaRouter (PKCE)
+python -m orcarouter.cli set-key                   # store an existing API key
+python -m orcarouter.web.app                       # the provider settings UI
+
+# Use it from the pick-and-place demo
+python 7_Demo_youBotPickAndPlace/code/orcarouter_agent.py --list-models
+python 7_Demo_youBotPickAndPlace/code/orcarouter_agent.py --model orcarouter/auto \
+    --prompt "Plan how to pick up the can at point A and place it at point B."
+```
+
+Set `ORCAROUTER_API_KEY` to use an existing key without any interactive step.
+See [docs/ORCAROUTER.md](docs/ORCAROUTER.md) for the endpoint contract, the
+credential lifecycle and the provider evidence.
+
+---
+
 ## 文章教程
 
 本教程将同步发布在个人微信公众号、知乎专栏和CSDN上，想要获取文章教程有以下3种方式：
